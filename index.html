@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klassement — TDF 2026 Ploegenspel</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top-bar">
+  <h1><span class="flag">🚴</span> TDF 2026 Ploegenspel</h1>
+  <nav class="tabs">
+    <a href="index.html" class="active">Klassement</a>
+    <a href="compare.html">Vergelijk teams</a>
+    <a href="entry.html">Etappe invoeren</a>
+  </nav>
+</header>
+
+<main>
+  <div id="emptyState" class="card" style="display:none">
+    <h2>Nog geen etappe-uitslagen</h2>
+    <p>Vul de eerste etappe in via <a href="entry.html">Etappe invoeren</a> om het klassement te zien.</p>
+  </div>
+
+  <div id="content" style="display:none">
+    <div class="grid badges" id="badges"></div>
+
+    <div class="card">
+      <h2>🟡 Algemeen klassement (cumulatief)</h2>
+      <canvas id="cumulativeChart" height="110"></canvas>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="card">
+        <h2>📊 Punten laatste etappe</h2>
+        <canvas id="stageChart" height="140"></canvas>
+      </div>
+      <div class="card">
+        <h2>🏆 Stand</h2>
+        <table id="standingsTable">
+          <thead>
+            <tr><th>#</th><th>Team</th><th>Punten</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>💎 Unieke troeven die al gescoord hebben</h2>
+      <p class="small muted">Renners die maar door één team gekozen zijn en al punten hebben opgeleverd.</p>
+      <table id="uniqueScorersTable">
+        <thead><tr><th>Team</th><th>Renner</th><th>Punten</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="js/scoring.js"></script>
+<script src="js/gamification.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vergelijk teams — TDF 2026 Ploegenspel</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top-bar">
+  <h1><span class="flag">🚴</span> TDF 2026 Ploegenspel</h1>
+  <nav class="tabs">
+    <a href="index.html">Klassement</a>
+    <a href="compare.html" class="active">Vergelijk teams</a>
+    <a href="entry.html">Etappe invoeren</a>
+  </nav>
+</header>
+
+<main>
+  <div class="card">
+    <h2>⚔️ Head-to-head</h2>
+    <p class="small muted">Kies twee teams om te zien welke renners ze delen en welke uniek zijn.</p>
+    <div class="grid cols-2">
+      <div class="form-row">
+        <label for="teamA">Team A</label>
+        <select id="teamA"></select>
+      </div>
+      <div class="form-row">
+        <label for="teamB">Team B</label>
+        <select id="teamB"></select>
+      </div>
+    </div>
+    <div class="grid cols-3" id="h2hResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>🧩 Volledige renners-matrix</h2>
+    <p class="small muted">
+      <span class="legend-swatch" style="background:rgba(30,138,60,0.4)"></span>gekozen door dit team &nbsp;&nbsp;
+      <span class="legend-swatch" style="background:rgba(255,205,0,0.7)"></span>unieke troef (slechts 1 team)
+    </p>
+    <div class="matrix-wrap">
+      <table class="matrix" id="matrixTable"></table>
+    </div>
+  </div>
+</main>
+
+<script src="js/scoring.js"></script>
+<script src="js/compare.js"></script>
+</body>
+</html>
