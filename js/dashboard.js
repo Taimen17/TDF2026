@@ -1,11 +1,15 @@
-const TEAM_COLORS = [
-  '#1E8A3C', '#E4032E', '#FFCD00', '#1f77b4', '#9467bd',
-  '#ff7f0e', '#17becf', '#8c564b', '#e377c2',
-];
+const TOTAL_STAGES = 21;
 
 function colorFor(teamName, teams) {
-  const idx = teams.findIndex(t => t.name === teamName);
-  return TEAM_COLORS[idx % TEAM_COLORS.length];
+  return teams.find(t => t.name === teamName)?.color || '#999';
+}
+
+function emojiFor(teamName, teams) {
+  return teams.find(t => t.name === teamName)?.emoji || '🚴';
+}
+
+function teamLabel(teamName, teams) {
+  return `${emojiFor(teamName, teams)} ${teamName}`;
 }
 
 function rankChangeHtml(change) {
@@ -26,6 +30,12 @@ function badgeCard(emoji, title, value, sub) {
     </div>`;
 }
 
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' });
+}
+
 (async function () {
   const { teams, results, riderByBib, bibToTeams } = await window.TDF.loadData();
 
@@ -37,20 +47,27 @@ function badgeCard(emoji, title, value, sub) {
 
   const standings = window.TDF.buildStandings(results, teams);
   const badges = window.TDF.computeBadges(standings, teams, riderByBib, bibToTeams);
-  const { stages, cumulative } = standings;
+  const { stages } = standings;
   const lastStage = stages[stages.length - 1];
+
+  // ---- Voortgang ----
+  const pct = Math.min(100, Math.round((lastStage.stage / TOTAL_STAGES) * 100));
+  document.getElementById('progressLabel').textContent = `Etappe ${lastStage.stage} van ${TOTAL_STAGES}`;
+  document.getElementById('progressFill').style.width = `${pct}%`;
+  document.getElementById('lastUpdatedLabel').textContent =
+    lastStage.date ? `Laatste update: ${formatDate(lastStage.date)}` : '';
 
   // ---- Badges ----
   const badgesEl = document.getElementById('badges');
   badgesEl.innerHTML = [
-    badgeCard('🟡', 'Maillot jaune', badges.leader.team, `${badges.leader.total} punten · ${badges.leaderStreak} etappe(s) aan kop`),
-    badgeCard('🏆', `Dagwinnaar etappe ${lastStage.stage}`, badges.stageWinner.team, `+${badges.stageWinner.stagePoints} punten vandaag`),
-    badgeCard('🔴', 'Rode lantaarn', badges.lantern.team, `${badges.lantern.total} punten`),
+    badgeCard('🟡', 'Maillot jaune', teamLabel(badges.leader.team, teams), `${badges.leader.total} punten · ${badges.leaderStreak} etappe(s) aan kop`),
+    badgeCard('🏆', `Dagwinnaar etappe ${lastStage.stage}`, teamLabel(badges.stageWinner.team, teams), `+${badges.stageWinner.stagePoints} punten vandaag`),
+    badgeCard('🔴', 'Rode lantaarn', teamLabel(badges.lantern.team, teams), `${badges.lantern.total} punten`),
     badges.biggestClimber.rankChange > 0
-      ? badgeCard('📈', 'Grootste stijger', badges.biggestClimber.team, `+${badges.biggestClimber.rankChange} plaats(en) omhoog`)
+      ? badgeCard('📈', 'Grootste stijger', teamLabel(badges.biggestClimber.team, teams), `+${badges.biggestClimber.rankChange} plaats(en) omhoog`)
       : '',
     badges.biggestFaller.rankChange < 0
-      ? badgeCard('📉', 'Vrije val', badges.biggestFaller.team, `${badges.biggestFaller.rankChange} plaats(en) omlaag`)
+      ? badgeCard('📉', 'Vrije val', teamLabel(badges.biggestFaller.team, teams), `${badges.biggestFaller.rankChange} plaats(en) omlaag`)
       : '',
     badges.topRider
       ? badgeCard('⭐', 'Sterkste renner v/d tour', badges.topRider.rider.name, `${badges.topRider.points} fantasy-punten · ${badges.topRider.rider.team}`)
@@ -60,16 +77,12 @@ function badgeCard(emoji, title, value, sub) {
   // ---- Cumulatief lijndiagram ----
   const labels = stages.map(s => `Etappe ${s.stage}`);
   const cumulativeDatasets = teams.map(t => {
-    let running = 0;
-    const data = stages.map(s => {
-      const row = s.ranking.find(r => r.team === t.name);
-      return row.total;
-    });
+    const data = stages.map(s => s.ranking.find(r => r.team === t.name).total);
     return {
       label: t.name,
       data,
-      borderColor: colorFor(t.name, teams),
-      backgroundColor: colorFor(t.name, teams),
+      borderColor: t.color,
+      backgroundColor: t.color,
       tension: 0.25,
       pointRadius: 3,
     };
@@ -105,19 +118,45 @@ function badgeCard(emoji, title, value, sub) {
     },
   });
 
-  // ---- Standen tabel ----
+  // ---- Standen tabel (sorteerbaar) ----
   const tbody = document.querySelector('#standingsTable tbody');
-  tbody.innerHTML = lastStage.ranking
-    .map(r => {
-      const rowClass = r.rank === 1 ? 'leader' : (r.rank === lastStage.ranking.length ? 'lantern' : '');
-      return `<tr class="${rowClass}">
-        <td>${r.rank}</td>
-        <td>${r.team}</td>
-        <td>${r.total}</td>
-        <td>${rankChangeHtml(r.rankChange)}</td>
-      </tr>`;
-    })
-    .join('');
+  let sortState = { key: null, dir: 1 };
+
+  function renderStandings() {
+    let rows = [...lastStage.ranking];
+    if (sortState.key === 'team') {
+      rows.sort((a, b) => a.team.localeCompare(b.team) * sortState.dir);
+    } else if (sortState.key === 'total') {
+      rows.sort((a, b) => (a.total - b.total) * sortState.dir);
+    } else {
+      rows.sort((a, b) => a.rank - b.rank);
+    }
+
+    tbody.innerHTML = rows
+      .map(r => {
+        const rowClass = r.rank === 1 ? 'leader' : (r.rank === lastStage.ranking.length ? 'lantern' : '');
+        return `<tr class="${rowClass}">
+          <td>${r.rank}</td>
+          <td><span class="team-color-dot" style="background:${colorFor(r.team, teams)}"></span>${teamLabel(r.team, teams)}</td>
+          <td>${r.total}</td>
+          <td>${rankChangeHtml(r.rankChange)}</td>
+        </tr>`;
+      })
+      .join('');
+  }
+  renderStandings();
+
+  document.querySelectorAll('#standingsTable th.sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.sort;
+      sortState.dir = sortState.key === key ? -sortState.dir : 1;
+      sortState.key = key;
+      document.querySelectorAll('#standingsTable th.sortable').forEach(t => t.classList.remove('active'));
+      th.classList.add('active');
+      th.querySelector('.sort-arrow').textContent = sortState.dir === 1 ? '↑' : '↓';
+      renderStandings();
+    });
+  });
 
   // ---- Unieke troeven ----
   const uniqueBody = document.querySelector('#uniqueScorersTable tbody');
@@ -125,7 +164,7 @@ function badgeCard(emoji, title, value, sub) {
     uniqueBody.innerHTML = `<tr><td colspan="3" class="muted">Nog geen unieke renners die gescoord hebben.</td></tr>`;
   } else {
     uniqueBody.innerHTML = badges.uniqueScorers
-      .map(u => `<tr><td>${u.team}</td><td>${u.rider.name}</td><td>${u.points}</td></tr>`)
+      .map(u => `<tr><td>${teamLabel(u.team, teams)}</td><td>${u.rider.name}</td><td>${u.points}</td></tr>`)
       .join('');
   }
 })();

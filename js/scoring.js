@@ -2,11 +2,19 @@
 const STAGE_POINTS = [15, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
 async function loadData() {
-  const [riders, teams, results] = await Promise.all([
+  const [riders, teams, results, teamStyles] = await Promise.all([
     fetch('data/riders.json').then(r => r.json()),
     fetch('data/teams.json').then(r => r.json()),
     fetch('data/results.json').then(r => r.json()),
+    fetch('data/teamStyles.json').then(r => r.json()).catch(() => ({})),
   ]);
+
+  const fallbackColors = ['#1E8A3C', '#E4032E', '#FFCD00', '#1f77b4', '#9467bd', '#ff7f0e', '#17becf', '#8c564b', '#e377c2'];
+  teams.forEach((t, i) => {
+    const style = teamStyles[t.name] || {};
+    t.color = style.color || fallbackColors[i % fallbackColors.length];
+    t.emoji = style.emoji || '🚴';
+  });
 
   const riderByBib = new Map(riders.map(r => [r.bib, r]));
 

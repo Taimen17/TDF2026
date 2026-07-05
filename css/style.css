@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap');
+
 :root {
   --tdf-yellow: #FFCD00;
   --tdf-green: #1E8A3C;
@@ -22,25 +24,50 @@ body {
 }
 
 header.top-bar {
-  background: var(--tdf-dark);
+  background:
+    linear-gradient(120deg, rgba(255,205,0,0.12), rgba(228,3,46,0.12)),
+    var(--tdf-dark);
   color: white;
-  padding: 1rem 1.5rem;
+  padding: 1.1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.75rem;
+  border-bottom: 3px solid var(--tdf-yellow);
+}
+
+header.top-bar .brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
 header.top-bar h1 {
   margin: 0;
-  font-size: 1.25rem;
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 1.4rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 header.top-bar h1 .flag { color: var(--tdf-yellow); }
+
+header.top-bar .tagline {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.01em;
+}
 
 nav.tabs {
   display: flex;
@@ -191,3 +218,39 @@ textarea.output {
 .small { font-size: 0.85rem; }
 
 .legend-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 0.35rem; vertical-align: middle; }
+
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.progress-track {
+  flex: 1;
+  min-width: 180px;
+  height: 10px;
+  border-radius: 999px;
+  background: #eee;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--tdf-yellow), var(--tdf-red));
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.progress-label {
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+th.sortable { cursor: pointer; user-select: none; }
+th.sortable:hover { color: var(--text); }
+th.sortable .sort-arrow { margin-left: 0.25rem; opacity: 0.5; }
+th.sortable.active .sort-arrow { opacity: 1; }
+
+.team-color-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 0.4rem; vertical-align: middle; }

@@ -3,7 +3,7 @@
 
   const teamASel = document.getElementById('teamA');
   const teamBSel = document.getElementById('teamB');
-  const options = teams.map((t, i) => `<option value="${i}">${t.name}</option>`).join('');
+  const options = teams.map((t, i) => `<option value="${i}">${t.emoji} ${t.name}</option>`).join('');
   teamASel.innerHTML = options;
   teamBSel.innerHTML = options;
   teamBSel.value = teams.length > 1 ? 1 : 0;
@@ -51,24 +51,39 @@
   const thead = `<thead><tr>
     <th class="rider-name">Renner</th>
     <th>Populariteit</th>
-    ${teams.map(t => `<th>${t.name}</th>`).join('')}
+    ${teams.map(t => `<th>${t.emoji} ${t.name}</th>`).join('')}
   </tr></thead>`;
+  document.getElementById('matrixTable').innerHTML = thead + '<tbody></tbody>';
+  const matrixBody = document.querySelector('#matrixTable tbody');
 
-  const rows = usedBibs.map(bib => {
-    const rider = riderByBib.get(bib);
-    const owners = bibToTeams.get(bib);
-    const isUnique = owners.length === 1;
-    const cells = teams.map(t => {
-      const owns = t.riders.includes(bib);
-      if (!owns) return '<td>—</td>';
-      return `<td class="owned ${isUnique ? 'unique' : ''}">✓</td>`;
+  function renderMatrix(filter) {
+    const needle = filter.trim().toLowerCase();
+    const filteredBibs = needle
+      ? usedBibs.filter(bib => riderByBib.get(bib).name.toLowerCase().includes(needle))
+      : usedBibs;
+
+    if (filteredBibs.length === 0) {
+      matrixBody.innerHTML = `<tr><td colspan="${teams.length + 2}" class="muted">Geen renners gevonden voor "${filter}".</td></tr>`;
+      return;
+    }
+
+    matrixBody.innerHTML = filteredBibs.map(bib => {
+      const rider = riderByBib.get(bib);
+      const owners = bibToTeams.get(bib);
+      const isUnique = owners.length === 1;
+      const cells = teams.map(t => {
+        const owns = t.riders.includes(bib);
+        if (!owns) return '<td>—</td>';
+        return `<td class="owned ${isUnique ? 'unique' : ''}">✓</td>`;
+      }).join('');
+      return `<tr>
+        <td class="rider-name">${rider.name} <span class="muted small">(${rider.team})</span></td>
+        <td>${owners.length}/${teams.length}</td>
+        ${cells}
+      </tr>`;
     }).join('');
-    return `<tr>
-      <td class="rider-name">${rider.name} <span class="muted small">(${rider.team})</span></td>
-      <td>${owners.length}/${teams.length}</td>
-      ${cells}
-    </tr>`;
-  }).join('');
+  }
 
-  document.getElementById('matrixTable').innerHTML = thead + `<tbody>${rows}</tbody>`;
+  renderMatrix('');
+  document.getElementById('riderSearch').addEventListener('input', (e) => renderMatrix(e.target.value));
 })();

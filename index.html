@@ -8,7 +8,10 @@
 </head>
 <body>
 <header class="top-bar">
-  <h1><span class="flag">🚴</span> TDF 2026 Ploegenspel</h1>
+  <div class="brand">
+    <h1><span class="flag">🚴</span> TDF 2026 Ploegenspel</h1>
+    <p class="tagline">Het officiële ploegenspel voor de Tour de France 2026</p>
+  </div>
   <nav class="tabs">
     <a href="index.html" class="active">Klassement</a>
     <a href="compare.html">Vergelijk teams</a>
@@ -23,6 +26,14 @@
   </div>
 
   <div id="content" style="display:none">
+    <div class="card" id="progressCard">
+      <div class="progress-wrap">
+        <span class="progress-label" id="progressLabel"></span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <span class="small muted" id="lastUpdatedLabel"></span>
+      </div>
+    </div>
+
     <div class="grid badges" id="badges"></div>
 
     <div class="card">
@@ -39,7 +50,12 @@
         <h2>🏆 Stand</h2>
         <table id="standingsTable">
           <thead>
-            <tr><th>#</th><th>Team</th><th>Punten</th><th></th></tr>
+            <tr>
+              <th>#</th>
+              <th class="sortable" data-sort="team">Team <span class="sort-arrow">↕</span></th>
+              <th class="sortable" data-sort="total">Punten <span class="sort-arrow">↕</span></th>
+              <th></th>
+            </tr>
           </thead>
           <tbody></tbody>
         </table>
