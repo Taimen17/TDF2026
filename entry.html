@@ -18,13 +18,27 @@
 
 <main>
   <div class="card">
-    <h2>📋 Nieuwe etappe-uitslag invoeren</h2>
-    <p class="muted small">Vul de top 10 van de daguitslag in (positie 1 = winnaar). Zoek op naam of rugnummer. Na het opslaan download je een bijgewerkt <code>results.json</code> dat je in de map <code>data/</code> plaatst — de site pakt de nieuwe stand daarna automatisch op.</p>
+    <h2>🔑 GitHub-token</h2>
+    <p class="small muted">
+      Nodig om rechtstreeks naar de site te publiceren. Eenmalig aanmaken:
+      GitHub → Settings → Developer settings → <strong>Fine-grained tokens</strong> → Generate new token →
+      Repository access: alleen <code>TDF2026</code> → Permissions → Contents: <strong>Read and write</strong>.
+      Het token wordt alleen lokaal in je browser bewaard.
+    </p>
+    <div class="form-row">
+      <label for="ghToken">Personal access token</label>
+      <input type="password" id="ghToken" placeholder="github_pat_...">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📋 Etappe-uitslag invoeren</h2>
+    <p class="muted small">Kies de etappe en vul de top 10 in met rugnummers (positie 1 = winnaar). Bestaat er al een uitslag voor deze etappe, dan wordt die automatisch getoond zodat je 'm kunt aanpassen.</p>
 
     <div class="grid cols-2">
       <div class="form-row">
-        <label for="stageNum">Etappenummer</label>
-        <input type="number" id="stageNum" min="1" max="21">
+        <label for="stageNum">Etappe</label>
+        <select id="stageNum"></select>
       </div>
       <div class="form-row">
         <label for="stageDate">Datum</label>
@@ -35,22 +49,20 @@
     <div id="positions"></div>
 
     <div class="form-row">
-      <button class="primary" id="previewBtn">Bekijk puntentelling</button>
+      <button class="primary" id="saveBtn">Opslaan en publiceren</button>
     </div>
 
+    <div id="status"></div>
     <div id="preview"></div>
   </div>
 
-  <div class="card" id="downloadCard" style="display:none">
-    <h2>💾 Opslaan</h2>
-    <p class="small">Download het bijgewerkte bestand en vervang <code>data/results.json</code> ermee.</p>
+  <div class="card" id="fallbackCard" style="display:none">
+    <h2>💾 Alternatief: handmatig opslaan</h2>
+    <p class="small muted">Publiceren via token is niet gelukt. Download het bestand hieronder en plaats het zelf als <code>data/results.json</code> in de repo.</p>
     <button class="primary" id="downloadBtn">Download results.json</button>
-    <p class="small muted" style="margin-top:0.75rem">Of kopieer de inhoud hieronder handmatig:</p>
     <textarea class="output" id="jsonOutput" readonly></textarea>
   </div>
 </main>
-
-<datalist id="riderList"></datalist>
 
 <script src="js/scoring.js"></script>
 <script src="js/entry.js"></script>
