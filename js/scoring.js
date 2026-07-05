@@ -49,6 +49,22 @@ function stagePointsForTeams(top10, teams) {
   return { points, scorers };
 }
 
+// Totaal fantasy-punten die één renner heeft opgeleverd (team-onafhankelijk),
+// inclusief een overzicht per etappe waarin de renner scoorde.
+function computeRiderPoints(bib, results) {
+  const breakdown = [];
+  let total = 0;
+  for (const stage of [...results].sort((a, b) => a.stage - b.stage)) {
+    const idx = stage.top10.indexOf(bib);
+    if (idx !== -1) {
+      const points = STAGE_POINTS[idx] ?? 0;
+      total += points;
+      breakdown.push({ stage: stage.stage, position: idx + 1, points });
+    }
+  }
+  return { total, breakdown };
+}
+
 // Bouwt het volledige klassement: per etappe en cumulatief, inclusief klassering en positieverschil.
 function buildStandings(results, teams) {
   const cumulative = Object.fromEntries(teams.map(t => [t.name, 0]));
@@ -100,4 +116,4 @@ function buildStandings(results, teams) {
   return { stages, cumulative, riderContribution };
 }
 
-window.TDF = { STAGE_POINTS, loadData, stagePointsForTeams, buildStandings };
+window.TDF = { STAGE_POINTS, loadData, stagePointsForTeams, buildStandings, computeRiderPoints };

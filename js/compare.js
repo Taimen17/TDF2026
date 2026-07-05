@@ -1,5 +1,5 @@
 (async function () {
-  const { riders, teams, riderByBib, bibToTeams } = await window.TDF.loadData();
+  const { riders, teams, results, riderByBib, bibToTeams } = await window.TDF.loadData();
 
   const teamASel = document.getElementById('teamA');
   const teamBSel = document.getElementById('teamB');
@@ -40,6 +40,56 @@
   teamASel.addEventListener('change', renderH2H);
   teamBSel.addEventListener('change', renderH2H);
   renderH2H();
+
+  // ---- Zoek renner op rugnummer ----
+  const bibResultEl = document.getElementById('bibResult');
+
+  function renderBibSearch(rawValue) {
+    const value = rawValue.trim();
+    if (!value) {
+      bibResultEl.innerHTML = '';
+      return;
+    }
+    const bib = Number(value);
+    const rider = riderByBib.get(bib);
+    if (!rider) {
+      bibResultEl.innerHTML = `<p style="color:#E4032E">Geen renner gevonden met rugnummer ${value}.</p>`;
+      return;
+    }
+
+    const owners = bibToTeams.get(bib) || [];
+    const { total, breakdown } = window.TDF.computeRiderPoints(bib, results);
+
+    const ownersHtml = owners.length
+      ? owners.map(name => {
+          const t = teams.find(t => t.name === name);
+          return `<span class="pill green" style="margin:0 0.3rem 0.3rem 0">${t?.emoji || ''} ${name}</span>`;
+        }).join('')
+      : '<span class="pill muted">Door geen enkel team gekozen</span>';
+
+    const breakdownHtml = breakdown.length
+      ? `<table style="margin-top:0.75rem"><thead><tr><th>Etappe</th><th>Positie</th><th>Punten</th></tr></thead><tbody>${
+          breakdown.map(b => `<tr><td>${b.stage}</td><td>${b.position}</td><td>+${b.points}</td></tr>`).join('')
+        }</tbody></table>`
+      : '<p class="small muted" style="margin-top:0.5rem">Nog geen top-10 noteringen.</p>';
+
+    bibResultEl.innerHTML = `
+      <div class="badge-card" style="margin-top:0.75rem">
+        <div class="badge-emoji">🚴</div>
+        <div>
+          <div class="badge-title">${rider.name}</div>
+          <div class="badge-sub">${rider.team}</div>
+          <div class="badge-value" style="margin-top:0.4rem">${total} fantasy-punten</div>
+        </div>
+      </div>
+      <div style="margin-top:0.75rem">
+        <div class="small muted" style="margin-bottom:0.35rem">Opgenomen door:</div>
+        ${ownersHtml}
+      </div>
+      ${breakdownHtml}`;
+  }
+
+  document.getElementById('bibSearch').addEventListener('input', (e) => renderBibSearch(e.target.value));
 
   // ---- Volledige matrix ----
   const usedBibs = [...bibToTeams.keys()].sort((a, b) => {

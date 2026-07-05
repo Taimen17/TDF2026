@@ -2,82 +2,82 @@
     {
         "bib":  1,
         "name":  "POGAČAR Tadej",
-        "team":  "UAE Team Emirates - XRG"
+        "team":  "UAE Team Emirates XRG"
     },
     {
         "bib":  2,
         "name":  "DEL TORO Isaac",
-        "team":  "UAE Team Emirates - XRG"
+        "team":  "UAE Team Emirates XRG"
     },
     {
         "bib":  3,
-        "name":  "GROßSCHARTNER Felix",
-        "team":  "UAE Team Emirates - XRG"
+        "name":  "GROSSSCHARTNER Felix",
+        "team":  "UAE Team Emirates XRG"
     },
     {
         "bib":  4,
         "name":  "MCNULTY Brandon",
-        "team":  "UAE Team Emirates - XRG"
+        "team":  "UAE Team Emirates XRG"
     },
     {
         "bib":  5,
         "name":  "POLITT Nils",
-        "team":  "UAE Team Emirates - XRG"
+        "team":  "UAE Team Emirates XRG"
     },
     {
         "bib":  6,
         "name":  "VERMEERSCH Florian",
-        "team":  "UAE Team Emirates - XRG"
+        "team":  "UAE Team Emirates XRG"
     },
     {
         "bib":  7,
         "name":  "WELLENS Tim",
-        "team":  "UAE Team Emirates - XRG"
+        "team":  "UAE Team Emirates XRG"
     },
     {
         "bib":  8,
         "name":  "YATES Adam",
-        "team":  "UAE Team Emirates - XRG"
+        "team":  "UAE Team Emirates XRG"
     },
     {
         "bib":  11,
         "name":  "VINGEGAARD Jonas",
-        "team":  "Team Visma"
+        "team":  "Team Visma - Lease a Bike"
     },
     {
         "bib":  12,
         "name":  "AFFINI Edoardo",
-        "team":  "Team Visma"
+        "team":  "Team Visma - Lease a Bike"
     },
     {
         "bib":  13,
         "name":  "ARMIRAIL Bruno",
-        "team":  "Team Visma"
+        "team":  "Team Visma - Lease a Bike"
     },
     {
         "bib":  14,
         "name":  "CAMPENAERTS Victor",
-        "team":  "Team Visma"
+        "team":  "Team Visma - Lease a Bike"
     },
     {
         "bib":  15,
         "name":  "HAGENES Per Strand",
-        "team":  "Team Visma"
+        "team":  "Team Visma - Lease a Bike"
     },
     {
         "bib":  16,
         "name":  "JORGENSON Matteo",
-        "team":  "Team Visma"
+        "team":  "Team Visma - Lease a Bike"
     },
     {
         "bib":  17,
         "name":  "KUSS Sepp",
-        "team":  "Team Visma"
+        "team":  "Team Visma - Lease a Bike"
     },
     {
         "bib":  18,
         "name":  "PIGANZOLI Davide",
-        "team":  "Team Visma"
+        "team":  "Team Visma - Lease a Bike"
     },
     {
         "bib":  21,
@@ -111,12 +111,12 @@
     },
     {
         "bib":  27,
-        "name":  "VAN DIJKE Tim",
+        "name":  "DIJKE Tim van",
         "team":  "Red Bull - BORA - hansgrohe"
     },
     {
         "bib":  28,
-        "name":  "VAN GILS Maxim",
+        "name":  "GILS Maxim Van",
         "team":  "Red Bull - BORA - hansgrohe"
     },
     {
@@ -282,42 +282,42 @@
     {
         "bib":  71,
         "name":  "MARTINEZ Lenny",
-        "team":  "Bahrain - Victorious"
+        "team":  "Bahrain Victorious"
     },
     {
         "bib":  72,
         "name":  "BAUHAUS Phil",
-        "team":  "Bahrain - Victorious"
+        "team":  "Bahrain Victorious"
     },
     {
         "bib":  73,
         "name":  "CARUSO Damiano",
-        "team":  "Bahrain - Victorious"
+        "team":  "Bahrain Victorious"
     },
     {
         "bib":  74,
         "name":  "GRADEK Kamil",
-        "team":  "Bahrain - Victorious"
+        "team":  "Bahrain Victorious"
     },
     {
         "bib":  75,
-        "name":  "STANNARD Robert",
-        "team":  "Bahrain - Victorious"
+        "name":  "MOHORIČ Matej",
+        "team":  "Bahrain Victorious"
     },
     {
         "bib":  76,
-        "name":  "MOHORIČ Matej",
-        "team":  "Bahrain - Victorious"
+        "name":  "STANNARD Robert",
+        "team":  "Bahrain Victorious"
     },
     {
         "bib":  77,
         "name":  "TIBERI Antonio",
-        "team":  "Bahrain - Victorious"
+        "team":  "Bahrain Victorious"
     },
     {
         "bib":  78,
-        "name":  "VAN MECHELEN Vlad",
-        "team":  "Bahrain - Victorious"
+        "name":  "MECHELEN Vlad Van",
+        "team":  "Bahrain Victorious"
     },
     {
         "bib":  81,
@@ -346,12 +346,12 @@
     },
     {
         "bib":  86,
-        "name":  "KWIATKOWSKI Michał",
+        "name":  "KWIATKOWSKI Michal",
         "team":  "Netcompany INEOS"
     },
     {
         "bib":  87,
-        "name":  "TARLING Joshua",
+        "name":  "TARLING Josh",
         "team":  "Netcompany INEOS"
     },
     {
@@ -362,46 +362,46 @@
     {
         "bib":  91,
         "name":  "MERLIER Tim",
-        "team":  "Soudal Quick-Step"
+        "team":  "Soudal - Quick-Step"
     },
     {
         "bib":  92,
         "name":  "EENKHOORN Pascal",
-        "team":  "Soudal Quick-Step"
+        "team":  "Soudal - Quick-Step"
     },
     {
         "bib":  93,
         "name":  "PARET-PEINTRE Valentin",
-        "team":  "Soudal Quick-Step"
+        "team":  "Soudal - Quick-Step"
     },
     {
         "bib":  94,
         "name":  "STUYVEN Jasper",
-        "team":  "Soudal Quick-Step"
+        "team":  "Soudal - Quick-Step"
     },
     {
         "bib":  95,
-        "name":  "VAN BAARLE Dylan",
-        "team":  "Soudal Quick-Step"
+        "name":  "BAARLE Dylan van",
+        "team":  "Soudal - Quick-Step"
     },
     {
         "bib":  96,
-        "name":  "VAN LERBERGHE Bert",
-        "team":  "Soudal Quick-Step"
+        "name":  "LERBERGHE Bert Van",
+        "team":  "Soudal - Quick-Step"
     },
     {
         "bib":  97,
-        "name":  "VAN WILDER Ilan",
-        "team":  "Soudal Quick-Step"
+        "name":  "WILDER Ilan Van",
+        "team":  "Soudal - Quick-Step"
     },
     {
         "bib":  98,
         "name":  "VERVAEKE Louis",
-        "team":  "Soudal Quick-Step"
+        "team":  "Soudal - Quick-Step"
     },
     {
         "bib":  101,
-        "name":  "VAN DER POEL Mathieu",
+        "name":  "POEL Mathieu van der",
         "team":  "Alpecin - Premier Tech"
     },
     {
@@ -481,7 +481,7 @@
     },
     {
         "bib":  121,
-        "name":  "JOHANNESSEN Tobias Halland",
+        "name":  "JOHANNESSEN Tobias",
         "team":  "Uno-X Mobility"
     },
     {
@@ -501,7 +501,7 @@
     },
     {
         "bib":  125,
-        "name":  "JOHANNESSEN Anders Halland",
+        "name":  "JOHANNESSEN Anders",
         "team":  "Uno-X Mobility"
     },
     {
@@ -541,7 +541,7 @@
     },
     {
         "bib":  135,
-        "name":  "LOUVEL Matis",
+        "name":  "LOUVEL Matîs",
         "team":  "NSN Cycling Team"
     },
     {
@@ -556,7 +556,7 @@
     },
     {
         "bib":  138,
-        "name":  "VAN ASBROECK Tom",
+        "name":  "ASBROECK Tom Van",
         "team":  "NSN Cycling Team"
     },
     {
@@ -576,7 +576,7 @@
     },
     {
         "bib":  144,
-        "name":  "GARCÍA PIERNA Raúl",
+        "name":  "GARCÍA Raúl",
         "team":  "Movistar Team"
     },
     {
@@ -601,43 +601,43 @@
     },
     {
         "bib":  151,
-        "name":  "DE LIE Arnaud",
-        "team":  "Lotto Intermarché"
+        "name":  "LIE Arnaud De",
+        "team":  "Lotto - Intermarché"
     },
     {
         "bib":  152,
         "name":  "ARTZ Huub",
-        "team":  "Lotto Intermarché"
+        "team":  "Lotto - Intermarché"
     },
     {
         "bib":  153,
         "name":  "BERCKMOES Jenno",
-        "team":  "Lotto Intermarché"
+        "team":  "Lotto - Intermarché"
     },
     {
         "bib":  154,
         "name":  "CRAPS Lars",
-        "team":  "Lotto Intermarché"
+        "team":  "Lotto - Intermarché"
     },
     {
         "bib":  155,
         "name":  "SLOCK Liam",
-        "team":  "Lotto Intermarché"
+        "team":  "Lotto - Intermarché"
     },
     {
         "bib":  156,
-        "name":  "VAN EETVELT Lennert",
-        "team":  "Lotto Intermarché"
+        "name":  "EETVELT Lennert Van",
+        "team":  "Lotto - Intermarché"
     },
     {
         "bib":  157,
         "name":  "VEISTROFFER Baptiste",
-        "team":  "Lotto Intermarché"
+        "team":  "Lotto - Intermarché"
     },
     {
         "bib":  158,
         "name":  "ZIMMERMANN Georg",
-        "team":  "Lotto Intermarché"
+        "team":  "Lotto - Intermarché"
     },
     {
         "bib":  161,
@@ -682,42 +682,42 @@
     {
         "bib":  171,
         "name":  "PIDCOCK Tom",
-        "team":  "Pinarello Q36.5 Pro Cycling Team"
+        "team":  "Pinarello - Q36.5 Pro Cycling Team"
     },
     {
         "bib":  172,
         "name":  "AZPARREN Xabier Mikel",
-        "team":  "Pinarello Q36.5 Pro Cycling Team"
+        "team":  "Pinarello - Q36.5 Pro Cycling Team"
     },
     {
         "bib":  173,
         "name":  "HARPER Chris",
-        "team":  "Pinarello Q36.5 Pro Cycling Team"
+        "team":  "Pinarello - Q36.5 Pro Cycling Team"
     },
     {
         "bib":  174,
         "name":  "HERMANS Quinten",
-        "team":  "Pinarello Q36.5 Pro Cycling Team"
+        "team":  "Pinarello - Q36.5 Pro Cycling Team"
     },
     {
         "bib":  175,
         "name":  "HOWSON Damien",
-        "team":  "Pinarello Q36.5 Pro Cycling Team"
+        "team":  "Pinarello - Q36.5 Pro Cycling Team"
     },
     {
         "bib":  176,
         "name":  "MEURISSE Xandro",
-        "team":  "Pinarello Q36.5 Pro Cycling Team"
+        "team":  "Pinarello - Q36.5 Pro Cycling Team"
     },
     {
         "bib":  177,
-        "name":  "VAN MOER Brent",
-        "team":  "Pinarello Q36.5 Pro Cycling Team"
+        "name":  "MOER Brent Van",
+        "team":  "Pinarello - Q36.5 Pro Cycling Team"
     },
     {
         "bib":  178,
         "name":  "WRIGHT Fred",
-        "team":  "Pinarello Q36.5 Pro Cycling Team"
+        "team":  "Pinarello - Q36.5 Pro Cycling Team"
     },
     {
         "bib":  181,
@@ -746,7 +746,7 @@
     },
     {
         "bib":  186,
-        "name":  "MARTIN Guillaume",
+        "name":  "MARTIN-GUYONNET Guillaume",
         "team":  "Groupama - FDJ United"
     },
     {
@@ -766,7 +766,7 @@
     },
     {
         "bib":  192,
-        "name":  "DE KLEIJN Arvid",
+        "name":  "KLEIJN Arvid de",
         "team":  "Tudor Pro Cycling Team"
     },
     {
@@ -871,12 +871,12 @@
     },
     {
         "bib":  217,
-        "name":  "VAN DEN BERG Julius",
+        "name":  "BERG Julius van den",
         "team":  "Team Picnic PostNL"
     },
     {
         "bib":  218,
-        "name":  "VAN DEN BROEK Frank",
+        "name":  "BROEK Frank van den",
         "team":  "Team Picnic PostNL"
     },
     {
